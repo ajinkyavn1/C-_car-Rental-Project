@@ -9,9 +9,12 @@ class history{
     string vehicalnumber;
 
 };
+class Cabs{
+
+};
 class Admin{
     public:
-    long id,mobail;
+    long userid;
     string name,email;
     vector<history> history;
     bool status=false;
@@ -24,16 +27,57 @@ class Admin{
        }
 };
 class customer{
+
     public:
+    long id,mobail;
+    string name,email;
+    vector<history> history;
        void display(){
            cout<<"in admin\n";
        }
 };
 
 void AdminPanel(vector<Admin> &admin){
+     system("CLS");
+    int ch;
+    do{
+       cout<<"\n***********************\n";
+       cout<<"1.Login\n2.Register\n3.Exit\nEnter The Choice=";
+       cin>>ch;
+       switch (ch)
+       {
+       case 1:
+           break;
+       case 2: 
+            break;
+        case 3: break;
+       default:
+        system("CLS");
+           break;
+       }
+        
+    }while(ch!=3);
 
 }
 void CustomerPanel(vector<customer> &customer){
+     int ch;
+    do{
+       cout<<"\n***********************\n";
+       cout<<"1.Login\n2.Register\n3.Exit\nEnter The Choice=";
+       cin>>ch;
+       switch (ch)
+       {
+       case 1:
+           break;
+       case 2: 
+            break;
+        case 3: break;
+       default:
+        system("CLS");
+           break;
+       }
+        
+    }while(ch!=3);
 
 }
 int main(){
@@ -42,18 +86,23 @@ int main(){
     int ch;
     do{
         cout<<"\n============================";
-        cout<<"\n 1.Admin Login\n 2.Customer Login \n 3.Exit\n Enter The Choice=";
+        cout<<"\n 1.Admin Login\n 2.Customer Login \n 3.Admin Register\n4.Customer Register\n5.Exit\n Enter The Choice=";
         cin>>ch;
         switch (ch)
         {
             case 1:
                     AdminPanel(admi);
+
                 break;
             case 2:
                     CustomerPanel(cust);
+            case 3: break;
+            case 3: break;
+            case 3: break;
             default:
+            system("CLS");
                 break;
         }
-    }while(ch!=3);
+    }while(ch!=5);
     
 }
