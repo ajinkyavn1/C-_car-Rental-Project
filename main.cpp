@@ -2,6 +2,7 @@
 // #include<admin.h>
 // #include<customer.h>
 using namespace std;
+
 class history{
     public:
     int orderid;
@@ -15,24 +16,49 @@ class Cabs{
 class Admin{
     public:
     long userid;
-    string name,email;
+    string name,email,Password;
     vector<history> history;
     bool status=false;
 
-        void Register1(){
-        
+        long Register(){
+            System("CLS");
+            cout<<"\n Enter the Name=";
+            cin>>name;
+            cout<<"\nEnter The email id=";
+            cin>>email;
+            cout<<"\nEnter the Password=";
+            cin>>Password;
+            userid=rand(0,10e8);
+            return userid;
         }
        void display(){
+           cout<<"My Details"
            cout<<"in admin\n";
        }
 };
-class customer{
+class User{
 
     public:
-    long id,mobail;
-    string name,email;
+     long userid;
+    string name,email,Password;
+    long mobail;
     vector<history> history;
+    
+        long Register(){
+            System("CLS");
+            cout<<"\nEnter the Mobail=";
+            cin>>mobail;
+            cout<<"\n Enter the Name=";
+            cin>>name;
+            cout<<"\nEnter The email id=";
+            cin>>email;
+            cout<<"\nEnter the Password=";
+            cin>>Password;
+            userid=rand(0,10e8);
+            return userid;
+        }
        void display(){
+           cout<<"My Details"
            cout<<"in admin\n";
        }
 };
@@ -59,7 +85,7 @@ void AdminPanel(vector<Admin> &admin){
     }while(ch!=3);
 
 }
-void CustomerPanel(vector<customer> &customer){
+void CustomerPanel(vector<User> &user){
      int ch;
     do{
        cout<<"\n***********************\n";
@@ -82,7 +108,9 @@ void CustomerPanel(vector<customer> &customer){
 }
 int main(){
     vector<Admin> admi;
-    vector<customer> cust;
+     Admin admin;
+     User user;
+    vector<User> cust;
     int ch;
     do{
         cout<<"\n============================";
@@ -95,12 +123,21 @@ int main(){
 
                 break;
             case 2:
-                    CustomerPanel(cust);
-            case 3: break;
-            case 3: break;
-            case 3: break;
+                user.Register();
+                cust.push_back(user);
+                CustomerPanel(cust);
+                break;
+            case 3:
+
+                admin.Register(); 
+                admi.push_back(admin);
+            break;
+            case 4: 
+         
+            break;
+            case 5: break;
             default:
-            system("CLS");
+                system("CLS");
                 break;
         }
     }while(ch!=5);
