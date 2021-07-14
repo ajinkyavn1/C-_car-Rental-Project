@@ -1,0 +1,2 @@
+admin Password=12345678
+admin Password=a
