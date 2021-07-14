@@ -1,3 +1,4 @@
-Admin admin=new Admin();
-                admin.Register(); 
-                admi.push_back(admin);
+user.Register();
+                // cust.push_back(user);
+                // // admin.users.push_back(user);
+                // CustomerPanel(cust);

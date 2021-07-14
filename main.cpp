@@ -20,19 +20,26 @@ class Admin{
     vector<history> history;
     bool status=false;
 
-        long Register(){
-            System("CLS");
+       void Register(){
+           system("CLS");
             cout<<"\n Enter the Name=";
             cin>>name;
             cout<<"\nEnter The email id=";
             cin>>email;
-            cout<<"\nEnter the Password=";
+           cout<<"\nEnter the Password(Password Shoud be string)=";
             cin>>Password;
-            userid=rand(0,10e8);
-            return userid;
+            userid=(long)rand();
+             cout<<"Login deatails username is "<<userid<<"\nCongratulation you are sucessfully registerd...\n";
         }
+      public : bool auth(string username,string pass){
+        //    if(username==email&&pass==Password)
+        //         return true
+        if(name==username)
+            return true;
+        return false;
+       }
        void display(){
-           cout<<"My Details"
+           cout<<"My Details";
            cout<<"in admin\n";
        }
 };
@@ -43,23 +50,35 @@ class User{
     string name,email,Password;
     long mobail;
     vector<history> history;
-    
-        long Register(){
-            System("CLS");
+
+        void Register(){
+            system("CLS");
             cout<<"\nEnter the Mobail=";
             cin>>mobail;
             cout<<"\n Enter the Name=";
             cin>>name;
             cout<<"\nEnter The email id=";
             cin>>email;
-            cout<<"\nEnter the Password=";
+            cout<<"\nEnter the Password(Password Shoud be string)=";
             cin>>Password;
-            userid=rand(0,10e8);
-            return userid;
+            userid=(long)rand();
+           
+            cout<<"Login deatails username is "<<userid<<"\nCongratulation you are sucessfully registerd...\n";
         }
+         public : bool auth(string username,string pass){
+        //    if(username==email&&pass==Password)
+        //         return true
+        if(name==username)
+            return true;
+        return false;
+       }
        void display(){
-           cout<<"My Details"
-           cout<<"in admin\n";
+           cout<<"My Details";
+            cout<<"UserId ="<<userid;
+           cout<<"name ="<<name;
+           cout<<"email ="<<email;
+           cout<<"Mobail ="<<mobail;
+          
        }
 };
 
@@ -123,19 +142,28 @@ int main(){
 
                 break;
             case 2:
-                user.Register();
-                cust.push_back(user);
-                CustomerPanel(cust);
+               
                 break;
             case 3:
-
-                admin.Register(); 
-                admi.push_back(admin);
+            for(int i=0;i<cust.size();i++)
+                {
+                    cout<<cust[i].auth("ajinkya","ajinkya");
+                    cout<<"\n";
+                }
+                // user.Register();
+                // cust.push_back(user);
+                // // admin.users.push_back(user);
+                // CustomerPanel(cust);
             break;
             case 4: 
-         
+                    user.Register();
+                    cust.push_back(user);
+                    // admin.users.push_back(user);
+                   // CustomerPanel(cust);
             break;
-            case 5: break;
+            case 5: 
+                
+            break;
             default:
                 system("CLS");
                 break;
