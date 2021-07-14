@@ -1,6 +1,5 @@
 #include<bits/stdc++.h>
-// #include<admin.h>
-// #include<customer.h>
+#include "System.h"
 using namespace std;
 
 class history{
@@ -15,9 +14,10 @@ class Cabs{
 };
 class Admin{
     public:
-    long userid;
+    long userid,mobail;
     string name,email,Password;
     vector<history> history;
+    vector<Cabs> cabs;
     bool status=false;
 
        void Register(){
@@ -26,23 +26,27 @@ class Admin{
             cin>>name;
             cout<<"\nEnter The email id=";
             cin>>email;
-           cout<<"\nEnter the Password(Password Shoud be string)=";
+            cout<<"\nEnter the Mobail=";
+            cin>>mobail;
+            cout<<"\nEnter the Password(Password Shoud be string)=";
             cin>>Password;
             userid=(long)rand();
-             cout<<"Login deatails username is "<<userid<<"\nCongratulation you are sucessfully registerd...\n";
+            cout<<"Login deatails username is "<<userid<<"\nCongratulation you are sucessfully registerd...\n";
         }
       public : bool auth(string username,string pass){
-        //    if(username==email&&pass==Password)
-        //         return true
-        if(name==username)
+        if(username==email&&pass==Password)
             return true;
+       
         return false;
        }
        void display(){
-        cout<<"My Details";
-        cout<<"UserId ="<<userid;
-        cout<<"name ="<<name;
-        cout<<"email ="<<email;
+        system("CLS");
+        cout<<"\n===================\n\tMy Details\n===================\n";
+        cout<<"\nUserId = "<<userid;
+        cout<<"\nname = "<<name;
+        cout<<"\nemail = "<<email;
+        cout<<"\nMobail = "<<mobail;
+        cout<<"\n";    
        }
 };
 class User{
@@ -67,121 +71,119 @@ class User{
            
             cout<<"Login deatails username is "<<userid<<"\nCongratulation you are sucessfully registerd...\n";
         }
-         public : bool auth(string username,string pass){
-        //    if(username==email&&pass==Password)
-        //         return true
-        if(name==username)
-            return true;
-        return false;
-       }
+         public : bool auth(string username,string pass)
+         {
+           if(username==email&&pass==Password)
+                return true;
+
+           return false;
+        }
        void display(){
-           cout<<"My Details";
-            cout<<"UserId ="<<userid;
-           cout<<"name ="<<name;
-           cout<<"email ="<<email;
-           cout<<"Mobail ="<<mobail;
+        system("CLS");
+        cout<<"\n===================\n\tMy Details\n===================\n";
+        cout<<"\nname = "<<name;
+        cout<<"\nemail = "<<email;
+        cout<<"\nMobail = "<<mobail;
+        cout<<"\n";    
           
        }
+       
 };
 
-void AdminPanel(vector<Admin> &admin){
-     system("CLS");
-    int ch;
-    do{
-       cout<<"\n***********************\n";
-       cout<<"1.Login\n2.Register\n3.Exit\nEnter The Choice=";
-       cin>>ch;
-       switch (ch)
-       {
-       case 1:
-           break;
-       case 2: 
-            break;
-        case 3: break;
-       default:
-        system("CLS");
-           break;
-       }
-        
-    }while(ch!=3);
+void AdminPanel(vector<Admin> &admin,vector<User>&cust){
+          int ch;
+     string username,pass;
+     cout<<"\nUsername =";
+     cin>>username;
+     cout<<"\n Password=";
+     cin>>pass;
+
+     for(int i=0;i<admin.size();i++)
+     {
+            if(admin[i].auth(username,pass))
+            {
+                do{
+                    cout<<"\n***********************\n";
+                    cout<<"1.Add Cab\n2.List Cabs\n3.List Cab Bookings\n4.Users List\n5.Exit \nEnter The Choice=";
+                    cin>>ch;
+                    switch (ch)
+                    {
+                        case 1:
+                            admin[i].display();
+                            break;
+                        case 2: 
+                                break;
+                            case 3: break;
+                        case 4:
+                        if(cust.size()==0)
+                        {
+                            cout<<"\nNO Users Found\n";
+                        }
+                        break;
+                        default:
+                            system("CLS");
+                            break;
+                    }
+                        
+                    }while(ch!=5);
+                }
+            else{
+                cout<<"\nUsername or Password Incorrect!\n";
+                break;
+            }
+     }
 
 }
 void CustomerPanel(vector<User> &user){
+
      int ch;
-    do{
-       cout<<"\n***********************\n";
-       cout<<"1.Login\n2.Register\n3.Exit\nEnter The Choice=";
-       cin>>ch;
-       switch (ch)
-       {
-       case 1:
-           break;
-       case 2: 
-            break;
-        case 3: break;
-       default:
-        system("CLS");
-           break;
-       }
-        
-    }while(ch!=3);
+     string username,pass;
+     cout<<"\nUsername =";
+     cin>>username;
+     cout<<"\n Password=";
+     cin>>pass;
 
-}
-bool Auth(vector<User> user){
-    string username;
-    string pass;
-    for(int i=0;i<user.size();i++){
-            if(user[i].auth(username, pass))
-    }
-}
-int main(){
-    vector<Admin> admi;
-     Admin admin;
-     User user;
-    vector<User> cust;
-    int ch;
-    do{
-        cout<<"\n============================";
-        cout<<"\n 1.Admin Login\n 2.Customer Login \n 3.Admin Register\n4.Customer Register\n5.Exit\n Enter The Choice=";
-        cin>>ch;
-        switch (ch)
-        {
-            case 1: 
-                    AdminPanel(admi);
-
-                break;
-            case 2:
-                    if(Auth(cust))
+     for(int i=0;i<user.size();i++)
+     {
+            if(user[i].auth(username,pass))
+            {
+                do{
+                    cout<<"\n***********************\n";
+                    cout<<"1.Book Cab\n2.Rides History\n3.Exit\nEnter The Choice=";
+                    cin>>ch;
+                    switch (ch)
                     {
-
-                    }else{
-                        cout<<"";
+                    case 1:
+                        break;
+                    case 2: 
+                            break;
+                        case 3: break;
+                    default:
+                        system("CLS");
+                        break;
                     }
-                break;
-            case 3:
-           
-                admin.Register();
-                admi.push_back(admin);
-                // admin.users.push_back(user);
-            break;
-            case 4: 
-                    user.Register();
-                    cust.push_back(user);
-                     // admin.users.push_back(user);
-                    // CustomerPanel(cust);
-            break;
-            case 5: 
-                for(int i=0;i<cust.size();i++)
-                {
-                        cout<<cust[i].auth("ajinkya","ajinkya");
-                        cout<<"\n";
+                        
+                    }while(ch!=3);
                 }
-                
-            break;
-            default:
-                system("CLS");
+            else{
+                cout<<"\nUsername or Password Incorrect!\n";
                 break;
-        }
-    }while(ch!=6);
+            }
+     }
+}
+    
+
+
+int main(){
+   
+    //fullscreen();
+	welcome();
+	load();
+	Boarder();
+	readUserPass();
+	availCar();
+	customerData();
+	carData();
+	menu();
     
 }
