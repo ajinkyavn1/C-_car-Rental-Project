@@ -39,8 +39,10 @@ class Admin{
         return false;
        }
        void display(){
-           cout<<"My Details";
-           cout<<"in admin\n";
+        cout<<"My Details";
+        cout<<"UserId ="<<userid;
+        cout<<"name ="<<name;
+        cout<<"email ="<<email;
        }
 };
 class User{
@@ -125,6 +127,13 @@ void CustomerPanel(vector<User> &user){
     }while(ch!=3);
 
 }
+bool Auth(vector<User> user){
+    string username;
+    string pass;
+    for(int i=0;i<user.size();i++){
+            if(user[i].auth(username, pass))
+    }
+}
 int main(){
     vector<Admin> admi;
      Admin admin;
@@ -137,37 +146,42 @@ int main(){
         cin>>ch;
         switch (ch)
         {
-            case 1:
+            case 1: 
                     AdminPanel(admi);
 
                 break;
             case 2:
-               
+                    if(Auth(cust))
+                    {
+
+                    }else{
+                        cout<<"";
+                    }
                 break;
             case 3:
-            for(int i=0;i<cust.size();i++)
-                {
-                    cout<<cust[i].auth("ajinkya","ajinkya");
-                    cout<<"\n";
-                }
-                // user.Register();
-                // cust.push_back(user);
-                // // admin.users.push_back(user);
-                // CustomerPanel(cust);
+           
+                admin.Register();
+                admi.push_back(admin);
+                // admin.users.push_back(user);
             break;
             case 4: 
                     user.Register();
                     cust.push_back(user);
-                    // admin.users.push_back(user);
-                   // CustomerPanel(cust);
+                     // admin.users.push_back(user);
+                    // CustomerPanel(cust);
             break;
             case 5: 
+                for(int i=0;i<cust.size();i++)
+                {
+                        cout<<cust[i].auth("ajinkya","ajinkya");
+                        cout<<"\n";
+                }
                 
             break;
             default:
                 system("CLS");
                 break;
         }
-    }while(ch!=5);
+    }while(ch!=6);
     
 }
